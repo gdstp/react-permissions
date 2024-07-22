@@ -6,7 +6,7 @@ export enum Permissions {
 }
 export const userPermissions = [
   Permissions.VIEW_INPUT,
-  //   Permissions.VIEW_BUTTON,
+  Permissions.VIEW_BUTTON,
   Permissions.VIEW_CONTENT,
   Permissions.VIEW_NAVBAR,
 ];

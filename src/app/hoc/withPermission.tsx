@@ -1,5 +1,6 @@
 import React from "react";
-import { Permissions, userPermissions } from "../permissions";
+import { Permissions } from "../permissions";
+import { usePermissionContext } from "../context/PermissionContext";
 
 type permissions = {
   permissions: Permissions[];
@@ -13,9 +14,9 @@ export function withPermission<T>(Component: React.FC<T>, options?: Props) {
   const ComponentWithPermission: React.FC<
     T & React.Attributes & permissions
   > = (props) => {
-    const userPermissionsSet = new Set(userPermissions);
-    const hasPermissions = props.permissions?.every((value) =>
-      userPermissionsSet.has(value)
+    const { get } = usePermissionContext();
+    const hasPermissions = props.permissions.every((permission) =>
+      get(permission)
     );
 
     if (hasPermissions) {
